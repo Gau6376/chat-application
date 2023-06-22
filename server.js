@@ -34,6 +34,10 @@ io.on("connection",(socket)=>{
         delete users[socket.io];   // user left message
         io.emit("user-list",users); // sare logo ko message krne ke liye
     });
+
+    socket.on('message',(data)=>{
+        socket.broadcast.emit("message",{user: data.user,msg: data.msg});
+    });
 });
 
 /* Socket.io setup Ends  */
